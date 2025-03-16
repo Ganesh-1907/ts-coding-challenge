@@ -1,6 +1,6 @@
 import { Given, Then, When } from "@cucumber/cucumber";
 import { accounts } from "../../src/config";
-import { AccountBalanceQuery, AccountId, Client, PrivateKey } from "@hashgraph/sdk";
+import { AccountBalanceQuery, AccountId, Client, PrivateKey, TokenCreateTransaction } from "@hashgraph/sdk";
 import assert from "node:assert";
 
 const client = Client.forTestnet()
@@ -10,7 +10,7 @@ Given(/^A Hedera account with more than (\d+) hbar$/, async function (expectedBa
   const MY_ACCOUNT_ID = AccountId.fromString(account.id);
   const MY_PRIVATE_KEY = PrivateKey.fromStringED25519(account.privateKey);
   client.setOperator(MY_ACCOUNT_ID, MY_PRIVATE_KEY);
-
+  const firstPubKey = MY_PRIVATE_KEY.publicKey;
 //Create the query request
   const query = new AccountBalanceQuery().setAccountId(MY_ACCOUNT_ID);
   const balance = await query.execute(client)
@@ -18,8 +18,36 @@ Given(/^A Hedera account with more than (\d+) hbar$/, async function (expectedBa
 
 });
 
-When(/^I create a token named Test Token \(HTT\)$/, async function () {
-
+When(/^I create a token named Test Token \(HTT\)$/, async function (client) {
+  try {
+    // Create a token using the Hedera Token Service
+    const transaction = await new TokenCreateTransaction()
+      .setTokenName("Test Token")
+      .setTokenSymbol("HTT")
+      .setTreasuryAccountId(client.operatorAccountId)
+      .setInitialSupply(1000)
+      .setDecimals(0)
+      .setAdminKey(client.operatorPublicKey)
+      .setSupplyKey(client.operatorPublicKey)
+      .freezeWith(client);
+    
+    // Sign the transaction with the client operator key
+    const signTx = await transaction.sign(client.operatorPrivateKey);
+    
+    // Submit the transaction to the Hedera network
+    const txResponse = await signTx.execute(client);
+    
+    // Get the receipt of the transaction
+    const receipt = await txResponse.getReceipt(client);
+    
+    // Get the token ID from the receipt
+    this.tokenId = receipt.tokenId;
+    
+    console.log(`Created token with ID: ${this.tokenId}`);
+  } catch (error) {
+    console.error(`Error creating token: ${error}`);
+    throw error;
+  }
 });
 
 Then(/^The token has the name "([^"]*)"$/, async function () {
