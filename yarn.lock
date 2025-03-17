@@ -686,6 +686,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/axios@npm:^0.14.4":
+  version: 0.14.4
+  resolution: "@types/axios@npm:0.14.4"
+  dependencies:
+    axios: "npm:*"
+  checksum: 10c0/945ef9d9d493b7292d33cf55679af90ffb60fe85475ce79327494480d517e8263f3f0c2f262396a1ada3ef4d66f3b05ea16b1f3c40680aa2b8399c36f6a92dfa
+  languageName: node
+  linkType: hard
+
 "@types/cucumber@npm:^7.0.0":
   version: 7.0.0
   resolution: "@types/cucumber@npm:7.0.0"
@@ -876,6 +885,17 @@ __metadata:
   version: 1.0.0
   resolution: "atomic-sleep@npm:1.0.0"
   checksum: 10c0/e329a6665512736a9bbb073e1761b4ec102f7926cce35037753146a9db9c8104f5044c1662e4a863576ce544fb8be27cd2be6bc8c1a40147d03f31eb1cfb6e8a
+  languageName: node
+  linkType: hard
+
+"axios@npm:*, axios@npm:^1.8.3":
+  version: 1.8.3
+  resolution: "axios@npm:1.8.3"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/de75da9859adf0a6481d4af2b687db357a054d20f0d69b99d502b71dae3578326b1fdc0951dabaef769827484941cda93d3f89150bf9e04f05f6615fb8316780
   languageName: node
   linkType: hard
 
@@ -3436,8 +3456,10 @@ __metadata:
   dependencies:
     "@cucumber/cucumber": "npm:^10.8.0"
     "@hashgraph/sdk": "npm:^2.47.0"
+    "@types/axios": "npm:^0.14.4"
     "@types/cucumber": "npm:^7.0.0"
     "@types/node": "npm:^20.14.9"
+    axios: "npm:^1.8.3"
     cucumber-pretty: "npm:^6.0.1"
     cucumber-tsflow: "npm:^4.4.4"
     mocha: "npm:^10.5.2"

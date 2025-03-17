@@ -3,6 +3,7 @@
 Feature: Token Service Use Cases
   Demonstration of the understanding of the Hedera Hashgraph Token Service and transaction model
 
+
   Scenario: Create a mintable token
     Given A Hedera account with more than 10 hbar
     When I create a token named Test Token (HTT)
@@ -21,7 +22,7 @@ Feature: Token Service Use Cases
     And The token has 2 decimals
     And The token is owned by the account
     And An attempt to mint tokens fails
-
+@wip1  
   Scenario: Transfer tokens between 2 accounts
     Given A first hedera account with more than 10 hbar
     And A second Hedera account
@@ -32,7 +33,7 @@ Feature: Token Service Use Cases
     And The first account submits the transaction
     Then The second account holds 10 HTT tokens
     And The first account holds 90 HTT tokens
-
+  @wip2
   Scenario: Create a token transfer transaction paid for by the recipient
     Given A first hedera account with more than 10 hbar
     And A second Hedera account

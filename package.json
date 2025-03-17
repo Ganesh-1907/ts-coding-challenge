@@ -10,11 +10,14 @@
     "test": "cucumber-js -p default --exit",
     "test:dev": "cucumber-js -p default --tags '@dev' --exit",
     "test:dev2": "cucumber-js -p default --tags '@dev2' --exit",
-    "test:wip": "cucumber-js -p default --tags 'not @wip' --exit"
+    "test:wip": "cucumber-js -p default --tags '@wip' --exit",
+    "test:wip1": "cucumber-js -p default --tags '@wip1' --exit",
+    "test:wip2": "cucumber-js -p default --tags '@wip2' --exit"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.8.0",
     "@hashgraph/sdk": "^2.47.0",
+    "@types/axios": "^0.14.4",
     "@types/cucumber": "^7.0.0",
     "@types/node": "^20.14.9",
     "cucumber-pretty": "^6.0.1",
@@ -25,5 +28,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.5.2"
   },
-  "packageManager": "yarn@4.7.0+sha512.5a0afa1d4c1d844b3447ee3319633797bcd6385d9a44be07993ae52ff4facabccafb4af5dcd1c2f9a94ac113e5e9ff56f6130431905884414229e284e37bb7c9"
+  "packageManager": "yarn@4.7.0+sha512.5a0afa1d4c1d844b3447ee3319633797bcd6385d9a44be07993ae52ff4facabccafb4af5dcd1c2f9a94ac113e5e9ff56f6130431905884414229e284e37bb7c9",
+  "dependencies": {
+    "axios": "^1.8.3"
+  }
 }
