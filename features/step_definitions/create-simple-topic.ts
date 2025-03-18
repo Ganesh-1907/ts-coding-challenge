@@ -18,10 +18,10 @@ const client = Client.forTestnet()
 //Set the operator with the account ID and private key
 
 Given(/^a first account with more than (\d+) hbars$/, async function (expectedBalance: number) {
-  const acc = accounts[3]
-  const account: AccountId = AccountId.fromString("0.0.3574028");
+  const acc = accounts[2]
+  const account: AccountId = AccountId.fromString(acc.id);
   this.account = account
-  const privKey: PrivateKey = PrivateKey.fromStringED25519("0x10f6f96ad367fd5d42e42366a77b9ae230240ad2d838d0cd5f355f099ecb8034");
+  const privKey: PrivateKey = PrivateKey.fromStringED25519(acc.privateKey);
   this.privKey = privKey
   client.setOperator(this.account, privKey);
 
@@ -99,7 +99,7 @@ console.log('topicMsgSeqNum:', topicMsgSeqNum.toString());
 });
 
 Then(/^The message "([^"]*)" is received by the topic and can be printed to the console$/, 
-  { timeout: 3000 }, // Increase Cucumber step timeout to 30 seconds
+  { timeout: 5000 }, // Increase Cucumber step timeout to 30 seconds
   async function (expectedMessage) {
     console.log(`Checking received message: ${expectedMessage}`);
     
@@ -109,7 +109,7 @@ Then(/^The message "([^"]*)" is received by the topic and can be printed to the 
       return new Promise<void>((resolve, reject) => {
         const timeout = setTimeout(() => {
           reject(new Error(`Timed out waiting for message: ${expectedMessage}`));
-        }, 3000); // 30 second timeout
+        }, 5000); // 30 second timeout
         
         const submitmsg = new TopicMessageQuery()
           .setTopicId(this.topicId)
@@ -136,7 +136,7 @@ Then(/^The message "([^"]*)" is received by the topic and can be printed to the 
 
 
 Given(/^A second account with more than (\d+) hbars$/, async function (expectedBalance : number) {
-  const acc = accounts[1]
+  const acc = accounts[3]
   const account: AccountId = AccountId.fromString(acc.id);
   this.account = account
   const privKey: PrivateKey = PrivateKey.fromStringED25519(acc.privateKey);
@@ -153,14 +153,14 @@ Given(/^A second account with more than (\d+) hbars$/, async function (expectedB
 });
 
 Given(/^A (\d+) of (\d+) threshold key with the first and second account$/, async function (threshold,totalKeys) {
-  const firstAcc = accounts[0];
+  const firstAcc = accounts[2];
   const firstAccountId = AccountId.fromString(firstAcc.id);
   const firstPrivKey = PrivateKey.fromStringED25519(firstAcc.privateKey);
   const firstPubKey = firstPrivKey.publicKey;
   console.log(firstAccountId,'first Account id')
   
   // Get the second account's information
-  const secondAcc = accounts[1];
+  const secondAcc = accounts[3];
   const secondAccountId = AccountId.fromString(secondAcc.id);
   const secondPrivKey = PrivateKey.fromStringED25519(secondAcc.privateKey);
   const secondPubKey = secondPrivKey.publicKey;

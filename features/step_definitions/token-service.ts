@@ -2,10 +2,9 @@ import { Before, Given, Then, When } from "@cucumber/cucumber";
 import { accounts } from "../../src/config";
 import { AccountBalanceQuery, AccountId, PrivateKey, TokenCreateTransaction,AccountInfoQuery, TokenInfoQuery ,TokenMintTransaction ,TokenSupplyType,TokenAssociateTransaction , TransferTransaction ,TransactionRecordQuery, TokenId, ReceiptStatusError} from "@hashgraph/sdk";
 import assert from "node:assert";
-import axios from "axios";
 const { Client } = require("@hashgraph/sdk");
 
-// const client = Client.forTestnet()
+
 
 Given(/^A Hedera account with more than (\d+) hbar$/, async function (expectedBalance: number) {
   const account = accounts[2]
@@ -306,18 +305,18 @@ Before(async function() {
   this.secondPublickey = secondPrivateKey.publicKey;
   this.secondAccountId = secondAccountId;
 //third account setup
-//   const thirdAccount = accounts[2];
-//   const thirdAccountId = AccountId.fromString(thirdAccount.id);
-//   const thirdPrivateKey = PrivateKey.fromStringED25519(thirdAccount.privateKey);
-//   this.thirdClient = Client.forTestnet();
-//   this.thirdClient.setOperator(thirdAccountId, thirdPrivateKey);
+  const thirdAccount = accounts[2];
+  const thirdAccountId = AccountId.fromString(thirdAccount.id);
+  const thirdPrivateKey = PrivateKey.fromStringED25519(thirdAccount.privateKey);
+  this.thirdClient = Client.forTestnet();
+  this.thirdClient.setOperator(thirdAccountId, thirdPrivateKey);
 
-// // //fourth account setup
-//   const fourthAccount = accounts[3];
-//   const fourthAccountId = AccountId.fromString(fourthAccount.id);
-//   const fourthPrivateKey = PrivateKey.fromStringED25519(fourthAccount.privateKey);
-//   this.fourthClient = Client.forTestnet();
-//   this.fourthClient.setOperator(fourthAccountId, fourthPrivateKey);
+ //fourth account setup
+  const fourthAccount = accounts[3];
+  const fourthAccountId = AccountId.fromString(fourthAccount.id);
+  const fourthPrivateKey = PrivateKey.fromStringED25519(fourthAccount.privateKey);
+  this.fourthClient = Client.forTestnet();
+  this.fourthClient.setOperator(fourthAccountId, fourthPrivateKey);
 });
 
 
@@ -461,7 +460,7 @@ console.log(`first account token balance before transfer: ${tokenBalance}`);
 });
 
 
-// Add this to your "Given The second account holds X HTT tokens" step
+
 Given(/^The second account holds (\d+) HTT tokens$/, async function (tokenAmount) {
   // First check the current balance
   const balanceCheck = await new AccountBalanceQuery()
@@ -625,22 +624,22 @@ Before(async function() {
   this.secondAccountId = secondAccountId;
 
   // Third account setup
-  // const thirdAccount = accounts[2];
-  // const thirdAccountId = AccountId.fromString(thirdAccount.id);
-  // const thirdPrivateKey = PrivateKey.fromStringED25519(thirdAccount.privateKey);
-  // this.thirdClient = Client.forTestnet();
-  // this.thirdClient.setOperator(thirdAccountId, thirdPrivateKey);
-  // this.thirdAccountId = thirdAccountId;
-  // this.thirdPrivateKey = thirdPrivateKey;
+  const thirdAccount = accounts[2];
+  const thirdAccountId = AccountId.fromString(thirdAccount.id);
+  const thirdPrivateKey = PrivateKey.fromStringED25519(thirdAccount.privateKey);
+  this.thirdClient = Client.forTestnet();
+  this.thirdClient.setOperator(thirdAccountId, thirdPrivateKey);
+  this.thirdAccountId = thirdAccountId;
+  this.thirdPrivateKey = thirdPrivateKey;
 
-  // // // Fourth account setup
-  // const fourthAccount = accounts[3];
-  // const fourthAccountId = AccountId.fromString(fourthAccount.id);
-  // const fourthPrivateKey = PrivateKey.fromStringED25519(fourthAccount.privateKey);
-  // this.fourthClient = Client.forTestnet();
-  // this.fourthClient.setOperator(fourthAccountId, fourthPrivateKey);
-  // this.fourthAccountId = fourthAccountId;
-  // this.fourthPrivateKey = fourthPrivateKey;
+ // Fourth account setup
+  const fourthAccount = accounts[3];
+  const fourthAccountId = AccountId.fromString(fourthAccount.id);
+  const fourthPrivateKey = PrivateKey.fromStringED25519(fourthAccount.privateKey);
+  this.fourthClient = Client.forTestnet();
+  this.fourthClient.setOperator(fourthAccountId, fourthPrivateKey);
+  this.fourthAccountId = fourthAccountId;
+  this.fourthPrivateKey = fourthPrivateKey;
 });
 
 async function associateTokenToAccount(accountId:any, privateKey:any, tokenId:any, client:any) {
