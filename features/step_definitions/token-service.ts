@@ -713,7 +713,7 @@ Given(/^A second Hedera account with (\d+) hbar and (\d+) HTT tokens$/, async fu
   console.log(balance.hbars.toBigNumber().toNumber(),'second balance')
   await associateTokenToAccount(this.secondAccountId, this.secondPrivateKey, this.tokenId, this.secondClient);
 
-  await transferTokensToAccount(this.secondClient.operatorAccountId, this.secondPrivateKey, this.secondAccountId, this.tokenId, tokenAmount, this.secondClient);
+  await transferTokensToAccount(this.client.operatorAccountId, this.secondPrivateKey, this.secondAccountId, this.tokenId, tokenAmount, this.secondClient);
 });
 
 Given(/^A third Hedera account with (\d+) hbar and (\d+) HTT tokens$/, async function (hbarAmount, tokenAmount) {
@@ -723,7 +723,7 @@ Given(/^A third Hedera account with (\d+) hbar and (\d+) HTT tokens$/, async fun
   console.log(balance.hbars.toBigNumber().toNumber(),'third balance')
   await associateTokenToAccount(this.thirdAccountId, this.thirdPrivateKey, this.tokenId, this.thirdClient);
   
-  await transferTokensToAccount(this.thirdClient.operatorAccountId, this.thirdPrivateKey, this.thirdAccountId, this.tokenId, tokenAmount, this.thirdClient);
+  await transferTokensToAccount(this.client.operatorAccountId, this.thirdPrivateKey, this.thirdAccountId, this.tokenId, tokenAmount, this.thirdClient);
   
 });
 
@@ -734,7 +734,7 @@ Given(/^A fourth Hedera account with (\d+) hbar and (\d+) HTT tokens$/, async fu
   console.log(balance.hbars.toBigNumber().toNumber(),'fourth balance')
   await associateTokenToAccount(this.fourthAccountId, this.fourthPrivateKey, this.tokenId, this.fourthClient);
 
-  await transferTokensToAccount(this.fourthClient.operatorAccountId, this.fourthPrivateKey, this.fourthAccountId, this.tokenId, tokenAmount, this.fourthClient);
+  await transferTokensToAccount(this.client.operatorAccountId, this.fourthPrivateKey, this.fourthAccountId, this.tokenId, tokenAmount, this.fourthClient);
 });
 
 When(/^A transaction is created to transfer (\d+) HTT tokens out of the first and second account and (\d+) HTT tokens into the third account and (\d+) HTT tokens into the fourth account$/, async function (firstAmount,secondamount, thirdAmount, fourthAmount) {
