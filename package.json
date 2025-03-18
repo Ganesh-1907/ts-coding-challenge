@@ -12,7 +12,8 @@
     "test:dev2": "cucumber-js -p default --tags '@dev2' --exit",
     "test:wip": "cucumber-js -p default --tags '@wip' --exit",
     "test:wip1": "cucumber-js -p default --tags '@wip1' --exit",
-    "test:wip2": "cucumber-js -p default --tags '@wip2' --exit"
+    "test:wip2": "cucumber-js -p default --tags '@wip2' --exit",
+    "test:wip3": "cucumber-js -p default --tags '@wip3' --exit"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.8.0",
